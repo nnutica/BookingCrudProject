@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import About from './About/page';
-import Home from './homepage/page';
+import About from './page/About';
+import Home from './page/Home';
 import Navbar from './component/navbar/Navbar';
 function App() {
 
@@ -9,10 +9,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <main className="pt-24 ml-12">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </main>
     </Router>
 
   )
