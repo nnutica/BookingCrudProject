@@ -1,7 +1,7 @@
 
 function About() {
     return (
-        <div>about 22222</div>
+        <div className="text-xl font-bold text-blue-500">about 22222</div>
     )
 }
 
