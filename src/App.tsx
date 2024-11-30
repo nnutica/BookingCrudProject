@@ -9,20 +9,23 @@ import PaymentSuccessPage from './page/PaymentSuccess';
 import Roomtype from './page/Roomtype';
 import Service from './page/service';
 import Ourmember from './page/Ourmember';
-import { Head } from './component/head/head';
 import { Footer } from './component/footer/footer';
+import Login from './page/Login';
+import Register from './page/register';
 function App() {
 
 
   return (
     <Router>
-      <Navbar />
-      <Head/>
-      <main className="pt-24 ml-12">
+      <Navbar className="fixed top-0 left-0 w-full z-10 bg-white" />
+
+      <main className="pt-16 ml-12">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/service" element={<Service />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
           <Route path="/About-us" element={<Ourmember />} />
           <Route path="/room" element={<Roomtype />} />
           <Route path="/payment" element={<PaymentPage />} />
@@ -32,8 +35,7 @@ function App() {
       </main>
       <Footer />
     </Router>
-
-  )
+  );
 }
 
 export default App

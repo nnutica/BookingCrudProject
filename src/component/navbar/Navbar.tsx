@@ -1,11 +1,12 @@
-
-import '../component.css'
 import { Link } from 'react-router-dom';
 
+interface NavbarProps {
+    className?: string; // รองรับ prop className
+}
 
-function Navbar() {
+const Navbar: React.FC<NavbarProps> = ({ className }) => {
     return (
-        <nav className="bg-white shadow-md fixed w-full">
+        <nav className={`bg-white shadow-md fixed w-full ${className || ''}`}>
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/" className="text-2xl font-bold text-blue-600">
@@ -19,21 +20,20 @@ function Navbar() {
                     <li><Link to="/room" className='hover:text-blue-600'>Rooms</Link></li>
                     <li><Link to="/service" className='hover:text-blue-600'>Service</Link></li>
                     <li><Link to="/about-us" className='hover:text-blue-600'>Our-Member</Link></li>
-
                 </ul>
 
                 {/* Login Button */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <a
-                        href="/login"
+                    <Link
+                        to="/login"
                         className="text-blue-600 border border-blue-600 px-6 py-2 rounded-lg hover:bg-blue-600 hover:text-white"
                     >
                         Login
-                    </a>
+                    </Link>
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
