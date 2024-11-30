@@ -9,12 +9,15 @@ import PaymentSuccessPage from './page/PaymentSuccess';
 import Roomtype from './page/Roomtype';
 import Service from './page/service';
 import Ourmember from './page/Ourmember';
+import { Head } from './component/head/head';
+import { Footer } from './component/footer/footer';
 function App() {
 
 
   return (
     <Router>
       <Navbar />
+      <Head/>
       <main className="pt-24 ml-12">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,6 +30,7 @@ function App() {
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
         </Routes>
       </main>
+      <Footer />
     </Router>
 
   )
