@@ -6,6 +6,7 @@ import Navbar from './component/navbar/Navbar';
 import PaymentPage from './page/Payment';
 import ProcessingPage from './page/ProcessingPage';
 import PaymentSuccessPage from './page/PaymentSuccess';
+import Roomtype from './page/Roomtype';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/room" element={<Roomtype />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/processing" element={<ProcessingPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
