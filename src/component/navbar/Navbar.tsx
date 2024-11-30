@@ -17,8 +17,9 @@ function Navbar() {
                     <li><Link to="/" className='hover:text-blue-600'>Home</Link></li>
                     <li><Link to="/about" className='hover:text-blue-600'>About</Link></li>
                     <li><Link to="/room" className='hover:text-blue-600'>Rooms</Link></li>
-                    <li><a href="#services" className="hover:text-blue-600">Services</a></li>
-                    <li><a href="#contact" className="hover:text-blue-600">Contact</a></li>
+                    <li><Link to="/service" className='hover:text-blue-600'>Service</Link></li>
+                    <li><Link to="/about-us" className='hover:text-blue-600'>Our-Member</Link></li>
+
                 </ul>
 
                 {/* Login Button */}
