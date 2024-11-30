@@ -8,6 +8,7 @@ const PaymentPage = () => {
     const handleCloseModal = () => setShowModal(false);
 
     return (
+        /* Modal Component */
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-6">Payment</h1>
             <button
@@ -17,7 +18,7 @@ const PaymentPage = () => {
                 Choose Payment Method
             </button>
 
-            {/* Modal Component */}
+            {/* เปิด Modal */}
             {showModal && <PaymentModal onClose={handleCloseModal} />}
         </div>
     );

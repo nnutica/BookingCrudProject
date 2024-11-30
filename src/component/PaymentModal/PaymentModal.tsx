@@ -6,7 +6,7 @@ type PaymentModalProps = {
 };
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
-    const [selectedMethod, setSelectedMethod] = useState<string>(""); // ใช้ string ชัดเจนสำหรับ method
+    const [selectedMethod, setSelectedMethod] = useState<string>("");
     const navigate = useNavigate();
 
     const handlePayment = () => {
@@ -23,7 +23,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
             <div className="bg-white rounded-lg shadow-lg w-96 p-6">
                 <h2 className="text-2xl font-bold mb-4">Choose Payment Method</h2>
 
-                {/* Accordion Section */}
+                {/* ตรงนี้ตกแต่งได้ พยายามยุ่งแค่ในส่วนของ ClassName กับ ข้อความในTag P */}
                 <div className="space-y-2">
                     <div
                         className={`border rounded-lg p-3 ${selectedMethod === "credit_card" ? "bg-blue-100" : ""
@@ -50,7 +50,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
                         <p className="text-sm text-gray-600">Transfer money to our bank.</p>
                     </div>
                 </div>
-
+                {/* สิ้นสุดวิธีชำระ */}
                 {/* Buttons */}
                 <div className="flex justify-between mt-6">
                     <button
