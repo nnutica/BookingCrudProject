@@ -2,21 +2,18 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:1337/api';
 
-
-
 export const registerUser = async (userData: { name: string; lastName: string; email: string; password: string }) => {
     try {
-        const response = await axios.post('http://localhost:1337/api/members', {
+        const response = await axios.post(`${API_URL}/members`, {
             data: {
                 Name: userData.name,
-                LastName: userData.lastName,
+                lastName: userData.lastName,
                 Email: userData.email,
                 Password: userData.password,
             },
         });
         return response.data;
     } catch (error) {
-        // ตรวจสอบว่า error เป็น AxiosError
         if (axios.isAxiosError(error)) {
             console.error('Failed to create member:', error.response?.data || error.message);
         } else {
@@ -25,6 +22,7 @@ export const registerUser = async (userData: { name: string; lastName: string; e
         throw error;
     }
 };
+
 
 
 
