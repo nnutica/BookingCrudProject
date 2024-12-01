@@ -10,8 +10,9 @@ import Roomtype from './page/Roomtype';
 import Service from './page/service';
 import Ourmember from './page/Ourmember';
 import { Footer } from './component/footer/footer';
-import Login from './page/Login';
-import Register from './page/register';
+import Rooms from './page/Rooms';
+import Booking from './page/Booking';
+
 function App() {
 
 
@@ -24,13 +25,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/service" element={<Service />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
           <Route path="/About-us" element={<Ourmember />} />
           <Route path="/room" element={<Roomtype />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/processing" element={<ProcessingPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
+          <Route path="/rooms" element={<Rooms />} />
+          <Route path="/booking" element={<Booking />} />
+
+
         </Routes>
       </main>
       <Footer />
