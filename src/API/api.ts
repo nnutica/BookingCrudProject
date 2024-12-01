@@ -23,19 +23,20 @@ export const registerUser = async (userData: { name: string; lastName: string; e
     }
 };
 
-
-
-
-// ฟังก์ชันในการ login user
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (credentials: { email: string; password: string }) => {
     try {
         const response = await axios.post(`${API_URL}/auth/local`, {
-            identifier: email,
-            password: password
+            identifier: credentials.email,
+            password: credentials.password,
         });
-        return response.data;
+        return response.data; // จะได้ JWT token และ user data
     } catch (error) {
-        console.error("Login failed:", error);
+        if (axios.isAxiosError(error)) {
+            console.error('Failed to login:', error.response?.data || error.message);
+        } else {
+            console.error('Unexpected error:', error);
+        }
         throw error;
     }
 };
+

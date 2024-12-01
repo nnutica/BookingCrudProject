@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom"
 
 function About() {
-    return (
-<div className="min-h-screen bg-gray-100 flex flex-col">
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Header Section */}
       <header className="bg-blue-500 text-white py-16">
         <div className="container mx-auto px-4 text-center">
@@ -45,7 +44,7 @@ function About() {
         </section>
       </main>
     </div>
-    )
+  )
 }
 
 export default About
