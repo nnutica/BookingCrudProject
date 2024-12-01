@@ -23,20 +23,27 @@ export const registerUser = async (userData: { name: string; lastName: string; e
     }
 };
 
-export const loginUser = async (credentials: { email: string; password: string }) => {
+export const loginUsertest = async (email: string) => {
+    // ดึง email จากการส่งมาจาก frontend
+    if (email === 'dummy@example.com') {
+        // สร้างข้อมูล dummy ให้เป็นการตอบกลับสำเร็จ
+        return { name: 'Dummy', lastName: 'User' };
+    } else {
+        // หาก email ไม่ตรงกับ dummy, ให้ throw error
+        throw new Error('Email not found');
+    }
+};
+
+export const loginUser = async (email: string) => {
     try {
-        const response = await axios.post(`${API_URL}/auth/local`, {
-            identifier: credentials.email,
-            password: credentials.password,
-        });
-        return response.data; // จะได้ JWT token และ user data
+        const response = await axios.post(`${API_URL}/members/login`, { email });
+        return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.error('Failed to login:', error.response?.data || error.message);
+            console.error('Login failed:', error.response?.data || error.message);
         } else {
             console.error('Unexpected error:', error);
         }
         throw error;
     }
 };
-
