@@ -1,71 +1,109 @@
-// src/components/BookingForm.tsx
 import React, { useState } from "react";
+import axios from "axios";
 
-const BookingForm: React.FC = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [roomId, setRoomId] = useState("");
+interface Room {
+    _id: string;
+    type: string;
+    price: number;
+}
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+interface Props {
+    room: Room;
+    onClose: () => void;
+}
 
-        // ส่งข้อมูลไปยัง MongoDB
-        const response = await fetch("http://localhost:5000/api/reservations", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, roomId }),
-        });
+const BookingModal: React.FC<Props> = ({ room, onClose }) => {
+    const [guestName, setGuestName] = useState("");
+    const [guests, setGuests] = useState(1);
+    const [checkIn, setCheckIn] = useState("");
+    const [checkOut, setCheckOut] = useState("");
+    const [paymentStatus, setPaymentStatus] = useState("Pending");
 
-        if (response.ok) {
-            alert("Reservation successful!");
-        } else {
-            alert("Failed to make reservation.");
+    const handleBooking = async () => {
+        const booking = {
+            bookingId: `${Date.now()}-${room.type}`,
+            guestName,
+            roomType: room.type,
+            guests,
+            checkIn,
+            checkOut,
+            paymentStatus,
+        };
+        console.log("Sending booking data:", booking);
+        try {
+            await axios.post("/api/bookings", booking);
+            alert("Booking successful!");
+            onClose();
+        } catch (err) {
+            console.error("Error booking room:", err);
+            alert("Failed to book the room.");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-4 bg-white shadow-md rounded">
-            <h2 className="text-xl font-bold mb-4">Book a Room</h2>
-            <div className="mb-4">
-                <label htmlFor="name" className="block text-sm font-semibold">Your Name</label>
-                <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full p-2 border rounded"
-                />
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-xl font-bold mb-4">Book {room.type}</h2>
+                <form>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Guest Name</label>
+                        <input
+                            type="text"
+                            value={guestName}
+                            onChange={(e) => setGuestName(e.target.value)}
+                            className="w-full border rounded px-3 py-2"
+                            placeholder="Enter your name"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Number of Guests</label>
+                        <input
+                            type="number"
+                            value={guests}
+                            onChange={(e) => setGuests(Number(e.target.value))}
+                            className="w-full border rounded px-3 py-2"
+                            min={1}
+                            max={room.type === "Superstar" ? 1 : 5}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Check-In</label>
+                        <input
+                            type="date"
+                            value={checkIn}
+                            onChange={(e) => setCheckIn(e.target.value)}
+                            className="w-full border rounded px-3 py-2"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="block text-gray-700">Check-Out</label>
+                        <input
+                            type="date"
+                            value={checkOut}
+                            onChange={(e) => setCheckOut(e.target.value)}
+                            className="w-full border rounded px-3 py-2"
+                        />
+                    </div>
+                    <div className="flex justify-end">
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="bg-gray-500 text-white px-4 py-2 rounded mr-2 hover:bg-gray-600"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleBooking}
+                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-semibold">Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded"
-                />
-            </div>
-            <div className="mb-4">
-                <label htmlFor="room" className="block text-sm font-semibold">Room ID</label>
-                <input
-                    id="room"
-                    type="text"
-                    value={roomId}
-                    onChange={(e) => setRoomId(e.target.value)}
-                    className="w-full p-2 border rounded"
-                />
-            </div>
-            <button
-                type="submit"
-                className="w-full p-2 bg-blue-500 text-white rounded"
-            >
-                Confirm Booking
-            </button>
-        </form>
+        </div>
     );
 };
 
-export default BookingForm;
+export default BookingModal;
