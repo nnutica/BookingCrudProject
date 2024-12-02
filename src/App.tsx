@@ -6,12 +6,7 @@ import Navbar from './component/navbar/Navbar';
 import PaymentPage from './page/Payment';
 import ProcessingPage from './page/ProcessingPage';
 import PaymentSuccessPage from './page/PaymentSuccess';
-import Roomtype from './page/Roomtype';
-import Service from './page/service';
-import Ourmember from './page/Ourmember';
-import { Footer } from './component/footer/footer';
-import Rooms from './page/Rooms';
-import Booking from './page/Booking';
+
 
 function App() {
 
@@ -24,19 +19,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/service" element={<Service />} />
-          <Route path="/About-us" element={<Ourmember />} />
-          <Route path="/room" element={<Roomtype />} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/processing" element={<ProcessingPage />} />
           <Route path="/payment-success" element={<PaymentSuccessPage />} />
-          <Route path="/rooms" element={<Rooms />} />
-          <Route path="/booking" element={<Booking />} />
+
 
 
         </Routes>
       </main>
-      <Footer />
+
     </Router>
   );
 }
